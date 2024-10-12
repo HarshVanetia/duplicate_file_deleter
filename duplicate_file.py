@@ -1,39 +1,45 @@
-import os 
+import os
+import sys
 
 def main():
+    #take input
+    path = get_path()
 
+    #scan dir
+    files = process(path)
+    # files -> {"file_name" : "file_path"}
+
+    #compare stored data
+    duplicate_files = compare(files)
+
+    #show dup files
+
+    #allow to delete files
+
+
+def get_path():
     path = input("Path: ")
-    duplicate_files = process(path)
-    display(duplicate_files)
+    if os.path.isdir(path):
+        return path
+    sys.exit("Invalid Path")
 
-    
 def process(path):
-
-    seen_file = {}
-    duplicates = []
+    seen_files = {}
 
     for (root,dirs,files) in os.walk(path):
-        for file_name in files :
-            full_path = os.path.join(root, file_name)
-            if file_name in seen_file :
-                try:
-                    duplicates.append(full_path)
-                    # os.remove(full_path)
-                except Exception as e:
-                    print(f"Error: {e}") 
-            else :
-                seen_file[file_name] = full_path
+        for file in files :
+            full_path = os.path.join(path, file)
+            file_size = os.path.getsize(full_path)
+            if file_size in seen_files:
+                seen_files[file_size].append(full_path)
+            else:
+                seen_files.update({file_size : [full_path]})
+            
 
+    return seen_files
 
-    return duplicates
-
-
-def display(list):
-    print("Duplicate files are:")
-
-    for i, file in enumerate(list):
-        print(i, file)
-
+def compare(files):
+    ...
 
 if __name__ == "__main__":
-    main()
+    main() 
