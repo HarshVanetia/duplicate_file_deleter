@@ -1,5 +1,6 @@
 import os
 import sys
+import filecmp
 
 def main():
     #take input
@@ -39,7 +40,19 @@ def process(path):
     return seen_files
 
 def compare(files):
-    ...
+
+    duplicate_files = []
+
+    for size in files:
+        if len(files[size]) > 1:
+            for file in files[size]:
+                refrence_file = file
+                # to be continue
+
+
+    
+            
+
 
 if __name__ == "__main__":
     main() 

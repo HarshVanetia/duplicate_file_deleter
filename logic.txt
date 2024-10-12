@@ -1,0 +1,12 @@
+logic.txt
+
+{
+    size1 : [1,2,3]
+    size2 : [1,2,3]
+    size3 : [1,2,3]
+    size4 : [1]
+}
+
+file[size] = [1, 2, 3]
+
+ref = 1
